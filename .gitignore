@@ -351,3 +351,9 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# My Epic git ignore edit (warning might be 2epic4u)
+*.sln
+*.pyproj
+Debug/*
+release/*
