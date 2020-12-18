@@ -2,6 +2,7 @@ import string
 
 
 #ex 13-1
+
 def words_frequency(fin):
     """ returns a histogram with the frequency of each word in file
     fin: file input"""
@@ -61,16 +62,37 @@ def frequent_20words(filename):
 def obscure_words(filename):
     """returns a dictionary with obscure words in a file
     filename: file with text"""
-    hist= words_frequency(open(filename))
+    text_list= list(words_frequency(open(filename)).keys())
     fin=open('words.txt')
-    keys=list(hist.keys())
-    for line in fin:
-        word=line.strip()
-        for k in keys:
-            if k.lower==word.lower:
-                keys.remove(k)
-                print(k,'done')
-    return keys
+    words_list=list(words_frequency(fin).keys())
+    t=[]
+    for s in text_list:
+        if s.lower() not in words_list:
+            t+=[s]
+    return t
+    
 
-type({}.keys())
-print(obscure_words('emma.txt'))
+#print(obscure_words('emma.txt'))
+
+#ex 13-5
+
+import random
+import itertools
+
+def histogram(s):
+    d={}
+    for c in s:
+        if c in d:
+            d[c]+=1
+        else:
+            d[c]=1
+    return d
+
+def choose_from_hist(hist):
+    t=[]
+    for k,v in hist.items():
+        for i in range(v):
+            t+=[k]
+    return random.choice(t)
+
+print(choose_from_hist(histogram('aaabbc')))
